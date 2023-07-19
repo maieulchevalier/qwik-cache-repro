@@ -8,6 +8,7 @@ import Footer from "~/components/starter/footer/footer";
 import styles from "./styles.css?inline";
 
 export const onGet: RequestHandler = async ({ cacheControl }) => {
+  console.log("get");
   // Control caching for this request for best performance and to reduce hosting costs:
   // https://qwik.builder.io/docs/caching/
   cacheControl({
@@ -18,7 +19,12 @@ export const onGet: RequestHandler = async ({ cacheControl }) => {
   });
 };
 
+export const onPost: RequestHandler = async () => {
+  console.log("post");
+};
+
 export const useServerTimeLoader = routeLoader$(() => {
+  console.log("loader");
   return {
     date: new Date().toISOString(),
   };
