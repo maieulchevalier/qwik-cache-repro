@@ -7,6 +7,20 @@ import Footer from "~/components/starter/footer/footer";
 
 import styles from "./styles.css?inline";
 
+import type { Session } from "@auth/core/types";
+
+export const onRequest: RequestHandler = async ({
+  sharedMap,
+  url,
+  redirect,
+}) => {
+  const session: Session | null = sharedMap.get("session");
+  if (!session && url.pathname !== "/signin/") {
+    throw redirect(302, `/signin`);
+  }
+  console.log("request");
+};
+
 export const onGet: RequestHandler = async ({ cacheControl }) => {
   console.log("get");
   // Control caching for this request for best performance and to reduce hosting costs:
